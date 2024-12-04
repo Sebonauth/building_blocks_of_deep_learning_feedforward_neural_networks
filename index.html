@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building Blocks of Deep Learning - Feedforward Neural Networks</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            font-size: 150%;
+        }
+        section {
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #ffffff;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease-in;
+        }
+        h1, h2, h3, h4 {
+            color: #333;
+            margin-top: 20px;
+        }
+        p, li {
+            line-height: 1.6;
+            color: #444;
+            margin-bottom: 20px;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        .image-placeholder, .interactive-placeholder, .continue-button, .vocab-section, .why-it-matters, .test-your-knowledge, .faq-section, .stop-and-think {
+            text-align: left;
+        }
+        .image-placeholder img, .interactive-placeholder img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        .vocab-section, .why-it-matters, .test-your-knowledge, .faq-section, .stop-and-think {
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .vocab-section {
+            background-color: #f0f8ff;
+        }
+        .vocab-section h3 {
+            color: #1e90ff;
+            font-size: 0.75em;
+            margin-bottom: 5px;
+            margin-top: 5px;
+        }
+        .vocab-section h4 {
+            color: #000;
+            font-size: 0.9em;
+            margin-top: 10px;
+            margin-bottom: 8px;
+        }
+        .vocab-term {
+            font-weight: bold;
+            color: #1e90ff;
+        }
+        .why-it-matters {
+            background-color: #ffe6f0;
+        }
+        .why-it-matters h3 {
+            color: #d81b60;
+            font-size: 0.75em;
+            margin-bottom: 5px;
+            margin-top: 5px;
+        }
+        .stop-and-think {
+            background-color: #e6e6ff;
+        }
+        .stop-and-think h3 {
+            color: #4b0082;
+            font-size: 0.75em;
+            margin-bottom: 5px;
+            margin-top: 5px;
+        }
+        .continue-button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 15px;
+            color: #ffffff;
+            background-color: #007bff;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .reveal-button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 15px;
+            color: #ffffff;
+            background-color: #4b0082;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .test-your-knowledge {
+            background-color: #e6ffe6;
+        }
+        .test-your-knowledge h3 {
+            color: #28a745;
+            font-size: 0.75em;
+            margin-bottom: 5px;
+            margin-top: 5px;
+        }
+        .test-your-knowledge h4 {
+            color: #000;
+            font-size: 0.9em;
+            margin-top: 10px;
+            margin-bottom: 8px;
+        }
+        .test-your-knowledge p {
+            margin-bottom: 15px;
+        }
+        .check-button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 15px;
+            color: #ffffff;
+            background-color: #28a745;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            font-size: 1em;
+        }
+        .faq-section {
+            background-color: #fffbea;
+        }
+        .faq-section h3 {
+            color: #ffcc00;
+            font-size: 0.75em;
+            margin-bottom: 5px;
+            margin-top: 5px;
+        }
+        .faq-section h4 {
+            color: #000;
+            font-size: 0.9em;
+            margin-top: 10px;
+            margin-bottom: 8px;
+        }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <section id="section1">
+        <div class="image-placeholder">
+            <img src="/placeholder.svg?height=300&width=600" alt="Playful image of LEGO bricks arranged in the shape of a simple neural network, with different colored bricks representing input, hidden, and output layers.">
+        </div>
+        <h1>Building Blocks of Deep Learning - Feedforward Neural Networks</h1>
+        <h3>Architecting Intelligence: Building with Neurons</h3>
+        <p>We've explored the individual neuron – the LEGO brick of AI. Now, let's put these bricks together and construct something amazing: a <strong>neural network</strong>! Just like LEGO creations, neural networks can be simple or incredibly complex, depending on how we arrange the building blocks. In this lesson, we'll focus on a fundamental type of neural network: the <strong>feedforward neural network</strong>.</p>
+        <div class="continue-button" onclick="showNextSection(2)">Continue</div>
+    </section>
+
+    <section id="section2">
+        <p>Imagine a network of pipes, with water flowing in one direction – from the source to the faucet. That's essentially how a feedforward neural network works. Information flows in a single direction – <strong>forward</strong> – from the <strong>input layer</strong>, through the <strong>hidden layers</strong>, and finally to the <strong>output layer</strong>. No loops, no backtracking – just a straight path.</p>
+        <div class="continue-button" onclick="showNextSection(3)">Continue</div>
+    </section>
+
+    <section id="section3">
+        <div class="vocab-section">
+            <h3>Build Your Vocab</h3>
+            <h4 class="vocab-term">Feedforward Neural Network</h4>
+            <p>A type of neural network where information flows in one direction, from input to output, without loops or cycles.</p>
+        </div>
+        <div class="continue-button" onclick="showNextSection(4)">Continue</div>
+    </section>
+
+    <section id="section4">
+        <p>Let's break down the network's structure. The <strong>input layer</strong> is like the network's senses – it receives the initial information or data. Each <strong>node</strong> (circle) in the input layer represents a single feature or input variable. Think of them as the individual LEGO studs where you attach the first layer of bricks.</p>
+        <div class="continue-button" onclick="showNextSection(5)">Continue</div>
+    </section>
+
+    <section id="section5">
+        <div class="vocab-section">
+            <h3>Build Your Vocab</h3>
+            <h4 class="vocab-term">Input Layer</h4>
+            <p>The first layer of a neural network that receives the initial input data.</p>
+            <h4 class="vocab-term">Node</h4>
+            <p>A basic unit of a neural network, also known as a neuron or perceptron, that processes information.</p>
+        </div>
+        <div class="continue-button" onclick="showNextSection(6)">Continue</div>
+    </section>
+
+    <section id="section6">
+        <div class="image-placeholder">
+            <img src="/placeholder.svg?height=300&width=600" alt="Diagram of a feedforward neural network with labeled input, hidden, and output layers. Each layer should have multiple nodes, and connections between nodes should be clearly shown. Use distinct colors for each layer.">
+        </div>
+        <div class="continue-button" onclick="showNextSection(7)">Continue</div>
+    </section>
+
+    <section id="section7">
+        <p>Next, we have the <strong>hidden layers</strong>. These layers are where the magic happens! They process the information from the input layer, extracting increasingly complex features and patterns. Each hidden layer can have multiple nodes, each performing its own calculation. The more hidden layers, the 'deeper' the network, hence the term <strong>deep learning</strong>.</p>
+        <div class="continue-button" onclick="showNextSection(8)">Continue</div>
+    </section>
+
+    <section id="section8">
+        <div class="vocab-section">
+            <h3>Build Your Vocab</h3>
+            <h4 class="vocab-term">Hidden Layer</h4>
+            <p>Intermediate layers in a neural network between the input and output layers, responsible for processing and transforming data.</p>
+            <h4 class="vocab-term">Deep Learning</h4>
+            <p>A subfield of machine learning that uses deep neural networks (networks with multiple hidden layers) to learn from data.</p>
+        </div>
+        <div class="continue-button" onclick="showNextSection(9)">Continue</div>
+    </section>
+
+    <section id="section9">
+        <p>Finally, the <strong>output layer</strong> produces the network's prediction or result. The number of output nodes depends on the task. For example, if we're classifying images of cats and dogs, we might have two output nodes – one for 'cat' and one for 'dog'.</p>
+        <div class="continue-button" onclick="showNextSection(10)">Continue</div>
+    </section>
+
+    <section id="section10">
+        <div class="vocab-section">
+            <h3>Build Your Vocab</h3>
+            <h4 class="vocab-term">Output Layer</h4>
+            <p>The final layer of a neural network that produces the network's prediction or output.</p>
+        </div>
+        <div class="continue-button" onclick="showNextSection(11)">Continue</div>
+    </section>
+
+    <section id="section11">
+        <p>The connections between nodes in different layers are crucial. In a <strong>fully connected layer</strong>, each node in one layer is connected to every node in the next layer. These connections have associated weights, just like in a single perceptron. These weights are adjusted during training to optimize the network's performance.</p>
+        <div class="continue-button" onclick="showNextSection(12)">Continue</div>
+    </section>
+
+    <section id="section12">
+        <div class="vocab-section">
+            <h3>Build Your Vocab</h3>
+            <h4 class="vocab-term">Fully Connected Layer</h4>
+            <p>A layer in a neural network where each node is connected to every node in the previous and subsequent layers.</p>
+        </div>
+        <div class="continue-button" onclick="showNextSection(13)">Continue</div>
+    </section>
+
+    <section id="section13">
+        <p>Now, let's build our own network! Use the interactive drag-and-drop interface below to construct a feedforward neural network. Add layers, nodes, and connections. Experiment with different architectures!</p>
+        <div class="interactive-placeholder">
+            <img src="/placeholder.svg?height=300&width=600" alt="Interactive drag-and-drop interface for building a neural network">
+        </div>
+        <div class="continue-button" onclick="showNextSection(14)">Continue</div>
+    </section>
+
+    <section id="section14">
+        <p>Congratulations, you've built your first neural network! But how do we teach it to make accurate predictions? That's where training comes in – specifically, using the <strong>backpropagation</strong> algorithm. We'll delve into that in the next lesson.</p>
+        <div class="continue-button" onclick="showNextSection(15)">Continue</div>
+    </section>
+
+    <section id="section15">
+        <div class="vocab-section">
+            <h3>Build Your Vocab</h3>
+            <h4 class="vocab-term">Backpropagation</h4>
+            <p>A training algorithm used to adjust the weights in a neural network by propagating the error back from the output layer to the input layer.</p>
+        </div>
+        <div class="continue-button" onclick="showNextSection(16)">Continue</div>
+    </section>
+
+    <section id="section16">
+        <h3>Review and Reflect</h3>
+        <div class="image-placeholder">
+            <img src="/placeholder.svg?height=300&width=600" alt="Image of a complex, visually appealing feedforward neural network with glowing connections, symbolizing the flow of information.">
+        </div>
+        <p>We've learned how to construct feedforward neural networks, the fundamental architecture for many deep learning models. Let's review the key building blocks:</p>
+        <div class="continue-button" onclick="showNextSection(17)">Continue</div>
+    </section>
+
+    <section id="section17">
+        <ul>
+            <li><strong>Input Layer:</strong> Receives the initial data, with each node representing a feature.</li>
+            <li><strong>Hidden Layers:</strong> Process information, extracting complex features and patterns.</li>
+            <li><strong>Output Layer:</strong> Produces the network's prediction or classification.</li>
+            <li><strong>Fully Connected Layers:</strong> Each node in a layer is connected to every node in the adjacent layers.</li>
+            <li><strong>Feedforward Flow:</strong> Information flows in one direction, from input to output.</li>
+            <li><strong>Backpropagation (briefly):</strong> A training algorithm for adjusting weights based on errors (more on this next time!).</li>
+        </ul>
+        <div class="continue-button" onclick="showNextSection(18)">Continue</div>
+    </section>
+
+    <section id="section18">
+        <p>You've now grasped the fundamental architecture of a neural network! You can visualize how data flows through the network, layer by layer, and how the connections between nodes contribute to learning. In the next lesson, we'll dive deep into the heart of neural network training – backpropagation. We'll unravel the mathematical magic behind how these networks learn from data and adjust their weights to make accurate predictions. Get ready to unlock the learning secrets of neural networks!</p>
+    </section>
+
+    <script>
+        // Show the first section initially
+        document.getElementById("section1").style.display = "block";
+        document.getElementById("section1").style.opacity = "1";
+
+        function showNextSection(nextSectionId) {
+            const currentButton = event.target;
+            const nextSection = document.getElementById("section" + nextSectionId);
+            
+            currentButton.style.display = "none";
+            
+            nextSection.style.display = "block";
+            setTimeout(() => {
+                nextSection.style.opacity = "1";
+            }, 10);
+
+            setTimeout(() => {
+                nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 500);
+        }
+
+        function revealAnswer(id) {
+            const revealText = document.getElementById(id);
+            const revealButton = event.target;
+            
+            revealText.style.display = "block";
+            revealButton.style.display = "none";
+        }
+    </script>
+</body>
+</html>
